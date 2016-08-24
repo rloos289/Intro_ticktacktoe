@@ -1,0 +1,18 @@
+#column1 {
+  border-style: solid;
+}
+
+.col-sm-12 {
+  border-style: solid;
+}
+
+.space {
+  border-style: solid;
+}
+.row {
+  min-width: 300px;
+}
+
+.testDiv {
+  border-style: solid;
+}
