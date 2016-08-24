@@ -40,3 +40,8 @@
   background-image: url("../img/O.png");
   background-size: 10em 10em;
 }
+
+.container {
+  border-style: solid;
+  border-color: white;
+}

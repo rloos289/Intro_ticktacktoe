@@ -70,26 +70,25 @@ $(document).ready(function(){
     var array = generateSpaces(3,3);
     console.log(player1);
 
-  $('.space').click(function() {
-    var id = parseInt($(this).attr('id'));
-    if (($(this).hasClass('backgroundX'))|| (($(this).hasClass('backgroundO')))) {
-      console.log('error check works');
-      return;
-    }
-    console.log(array)
-    if (player1.turn) {
-      array[id-1].mark = true;
-      console.log(array[id-1]);
-      player1.turn = false;
-      player2.turn = true;
-      $(this).addClass('backgroundX');
-    } else {
-      array[id-1].mark = false;
-      console.log(array[id-1]);
-      player1.turn = true;
-      player2.turn = false;
-      $(this).addClass('backgroundO');
-    }
-  });
+    $('.space').click(function() {
+      var id = parseInt($(this).attr('id'));
+      if (($(this).hasClass('backgroundX'))|| (($(this).hasClass('backgroundO')))) {
+        return;
+      }
+      console.log(array)
+      if (player1.turn) {
+        array[id-1].mark = true;
+        console.log(array[id-1]);
+        player1.turn = false;
+        player2.turn = true;
+        $(this).addClass('backgroundX');
+      } else {
+        array[id-1].mark = false;
+        console.log(array[id-1]);
+        player1.turn = true;
+        player2.turn = false;
+        $(this).addClass('backgroundO');
+      }
     });
+  });
 });
