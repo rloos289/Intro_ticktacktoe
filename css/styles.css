@@ -8,11 +8,35 @@
 
 .space {
   border-style: solid;
+  max-height: 10em;
+  max-width: 10em;
+  min-width: 10em;
+  min-height: 10em;
 }
+
 .row {
   min-width: 300px;
 }
 
 .testDiv {
   border-style: solid;
+}
+
+.container {
+  max-width: 500px;
+  min-width: 500px;
+}
+
+.backgroundX {
+  height: 100%;
+  width: 100%;
+  background-image: url("../img/X.png");
+  background-size: 10em 10em;
+}
+
+.backgroundO {
+  height: 100%;
+  width: 100%;
+  background-image: url("../img/O.png");
+  background-size: 10em 10em;
 }

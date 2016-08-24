@@ -12,11 +12,21 @@
 // }
 //
 
-
-
-
 function generateBoard (array) {
 
+}
+
+function createPlayers() {
+  var playerarray = [];
+  var player1 = new player('X', true); //for testing
+  var player2 = new player('O', false);
+  playerarray.push(player1, player2);
+  return playerarray;
+}
+
+function player(piece, turn) {
+  this.piece = piece;
+  this.turn = turn;
 }
 
 function generateSpaces (a,b) {
@@ -24,27 +34,17 @@ function generateSpaces (a,b) {
   var newSpace;
   for (var x = 1; x <= a; x++) {
     for (var y = 1; y <= b; y++) {
-      spaceArray.push(newSpace = new space (false, x, y));
+      spaceArray.push(newSpace = new space ( x, y));
     }
   }
-
   return spaceArray;
 }
 
-function arrangeHTML () {
-  var next = 0
-  next ++;
-  $('.game').append("<div class='space" + next + "'></div>");
-}
-
-function space (marked, x, y) {
-  this.mark = marked
+function space (x, y) {
+  this.mark =
   this.spacex = x
   this.spacey = y
 }
-
-
-
 
 // shit that is useless
 // function fuck() {
@@ -62,10 +62,34 @@ function space (marked, x, y) {
 
 //<!-- Front End  -->
 $(document).ready(function(){
+  $('#createGame').click(function (){
+    var playerarray = createPlayers();
+    var player1 = playerarray[0];
+    var player2 = playerarray[1];
+
+    var array = generateSpaces(3,3);
+    console.log(player1);
+
   $('.space').click(function() {
     var id = parseInt($(this).attr('id'));
-    var array = generateSpaces(3,3);
-    array[id-1].mark = true;
-    console.log(array[id-1]);
+    if (($(this).hasClass('backgroundX'))|| (($(this).hasClass('backgroundO')))) {
+      console.log('error check works');
+      return;
+    }
+    console.log(array)
+    if (player1.turn) {
+      array[id-1].mark = true;
+      console.log(array[id-1]);
+      player1.turn = false;
+      player2.turn = true;
+      $(this).addClass('backgroundX');
+    } else {
+      array[id-1].mark = false;
+      console.log(array[id-1]);
+      player1.turn = true;
+      player2.turn = false;
+      $(this).addClass('backgroundO');
+    }
   });
+    });
 });
