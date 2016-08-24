@@ -12,6 +12,8 @@
 // }
 //
 
+var fuck = /(?=.*2)(?=.*7)(?=.*6)|(?=.*9)(?=.*5)(?=.*1)|(?=.*4)(?=.*3)(?=.*8)|(?=.*2)(?=.*9)(?=.*4)|(?=.*7)(?=.*5)(?=.*3)|(?=.*6)(?=.*1)(?=.*8)|(?=.*2)(?=.*5)(?=.*8)|(?=.*4)(?=.*5)(?=.*6)/;
+
 function generateBoard (array) {
 
 }
@@ -77,12 +79,16 @@ $(document).ready(function(){
       }
       console.log(array)
       if (player1.turn) {
+        var value = $(this).data('value');
+        console.log(value);
         array[id-1].mark = true;
         console.log(array[id-1]);
         player1.turn = false;
         player2.turn = true;
         $(this).addClass('backgroundX');
       } else {
+        var value = $(this).data('value');
+        console.log(value);
         array[id-1].mark = false;
         console.log(array[id-1]);
         player1.turn = true;
