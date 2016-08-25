@@ -40,3 +40,10 @@
   background-image: url("../img/O.png");
   background-size: 10em 10em;
 }
+
+.backgroundC {
+  height: 100%;
+  width: 100%;
+  background-image: url("../img/C.gif");
+  background-size: 10em 10em;
+}

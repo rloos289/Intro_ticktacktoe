@@ -12,23 +12,28 @@
 // }
 //
 
-var fuck = /(?=.*2)(?=.*7)(?=.*6)|(?=.*9)(?=.*5)(?=.*1)|(?=.*4)(?=.*3)(?=.*8)|(?=.*2)(?=.*9)(?=.*4)|(?=.*7)(?=.*5)(?=.*3)|(?=.*6)(?=.*1)(?=.*8)|(?=.*2)(?=.*5)(?=.*8)|(?=.*4)(?=.*5)(?=.*6)/;
+
+
+
 
 function generateBoard (array) {
 
 }
 
+
 function createPlayers() {
   var playerarray = [];
-  var player1 = new player('X', true); //for testing
-  var player2 = new player('O', false);
+  var player1 = new player('X', true, [], game); //for testing
+  var player2 = new player('O', false, []);
   playerarray.push(player1, player2);
   return playerarray;
 }
 
-function player(piece, turn) {
+function player(piece, turn, array, overlord) {
   this.piece = piece;
   this.turn = turn;
+  this.winarray= array;
+  this.overlord = overlord;
 }
 
 function generateSpaces (a,b) {
@@ -48,19 +53,6 @@ function space (x, y) {
   this.spacey = y
 }
 
-// shit that is useless
-// function fuck() {
-//   spaceindex = 1
-//   for (var ridx = 1; ridx <= 3; ridx++) {
-//     $('.game').append("<div class='row" + ridx + "'></div>");
-//     for (var cidx = 1; cidx <= 3; cidx++) {
-//       debugger;
-//       // $('.game'+ (' row'+ ridx)).append("<div class='col-xs-4 space" + spaceindex  + "'></div>");
-//       console.log('.game'+ (' row'+ ridx))
-//       spaceindex++;
-//     }
-//   }
-// }
 
 //<!-- Front End  -->
 $(document).ready(function(){
@@ -70,29 +62,32 @@ $(document).ready(function(){
     var player2 = playerarray[1];
 
     var array = generateSpaces(3,3);
-    console.log(player1);
-
     $('.space').click(function() {
       var id = parseInt($(this).attr('id'));
       if (($(this).hasClass('backgroundX'))|| (($(this).hasClass('backgroundO')))) {
         return;
       }
-      console.log(array)
       if (player1.turn) {
-        var value = $(this).data('value');
-        console.log(value);
-        array[id-1].mark = true;
-        console.log(array[id-1]);
-        player1.turn = false;
-        player2.turn = true;
         $(this).addClass('backgroundX');
+        var value = $(this).data('value');
+        player1.addMark(value, array, id);
+        if (fuck.test(player1.winarray)) {
+          console.log("Player One Wins!")
+          // var array = [];
+          console.log(array);
+        }
+        player1.turnSwitch();
+        player2.turnSwitch();
       } else {
         var value = $(this).data('value');
-        console.log(value);
-        array[id-1].mark = false;
-        console.log(array[id-1]);
-        player1.turn = true;
-        player2.turn = false;
+        player1.addMark(value, array, id);
+        if (fuck.test(player2.winarray)) {
+          console.log("Player Two Wins!")
+          // var array = [];
+          console.log(array);
+        }
+        player2.turnSwitch();
+        player1.turnSwitch();
         $(this).addClass('backgroundO');
       }
     });
