@@ -97,7 +97,7 @@ $(document).ready(function(){
     if(game.gameState === false) {
       $('.space').addClass('backgroundC');
     }
-    if ((game.player1.winarray.length + game.player2.winarray.length) === 9) {
+    if ((game.player1.winarray.length + game.player2.winarray.length) === 9 && (game.winTest() != 'X') && (game.winTest() != 'O')) {
       $('.space').addClass('backgroundC');
       $('#results').text('You got a Cats Game!');
     }
